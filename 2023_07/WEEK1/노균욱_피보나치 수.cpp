@@ -14,18 +14,13 @@ using namespace std;
 
 int solution(int n) {
     int answer = 0;
-    vector<int> v;
-    
-    //초기 값 두개 push_back
-    v.push_back(0);
-    v.push_back(1);
+    vector<int> v = {0,1}; //첫 선언부 대괄호로 처리
     
     for(int i = 2; i <= n; i++){
         int sum = v[i-1] + v[i-2];
         sum %= 1234567;
         v.push_back(sum);
     }
-    
     answer = v.back();
     return answer;
 }
