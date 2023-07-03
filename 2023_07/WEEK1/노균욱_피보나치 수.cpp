@@ -14,7 +14,7 @@ using namespace std;
 
 int solution(int n) {
     int answer = 0;
-    vector<int> v = {0,1}; //첫 선언부 대괄호로 처리
+    vector<int> v = {0,1}; //첫 선언부 대괄호로 처리ㄴ
     
     for(int i = 2; i <= n; i++){
         int sum = v[i-1] + v[i-2];
