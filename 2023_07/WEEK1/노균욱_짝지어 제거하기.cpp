@@ -30,9 +30,6 @@ int solution(string s)
             }
         }
     }
-    
-    if(stack.empty())
-        return 1;
-    else
-        return 0;
+
+    return stack.empty();
 }
