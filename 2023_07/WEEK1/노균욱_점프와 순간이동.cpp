@@ -18,12 +18,12 @@ int solution(int n)
     
     while (sum != n){
         if(sum + i <= n){
-            sum += i;
+            sum += i; 
             ans++;
         }
         if(sum == n)
             break;
-        i /= 2;
+        i /= 2; 
     }
     return ans;
 }
