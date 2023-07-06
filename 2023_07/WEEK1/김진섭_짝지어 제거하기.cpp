@@ -1,4 +1,4 @@
-﻿//문제풀이: https://githubseob.tistory.com/253
+﻿//문제풀이: https://githubseob.tistory.com/185
 
 #include <string>
 #include <stack>
