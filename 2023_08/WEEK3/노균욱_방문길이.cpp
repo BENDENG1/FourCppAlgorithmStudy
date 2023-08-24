@@ -50,3 +50,47 @@ int solution(string dirs) {
     }
     return answer;
 }
+
+
+/*
+오는방향 가는방향을 고려해야함 이것만 고려하면 딱히 다른 문제는 없음
+
+저번 문제에서 풀때는 3차원 배열로 풀었는데
+이번에는 그냥 visited[y][x][ny][nx] 이런식으로 4차원 해도 괜찮을듯 ㅇㅇ
+
+물론 저번 코드가 나름 나쁘지 않을지도
+*/
+#include <string>
+using namespace std;
+
+int dirToNum(char c){
+    if(c == 'R') return 0;
+    else if(c == 'L') return 1;
+    else if(c == 'D') return 2;
+    else return 3;
+}
+
+int solution(string dirs) {
+    int answer = 0;
+    int dy[4] = {0,0,1,-1};
+    int dx[4] = {1,-1,0,0};
+    int y = 5,x = 5,ny,nx;
+    bool visited[11][11][11][11]= {false}; //나중에 좌표 +5씩 해줘야함 앞2from 뒤2to
+    
+    for(int i = 0; i < dirs.length();i++){
+        int num = dirToNum(dirs[i]);
+        ny = y + dy[num];
+        nx = x + dx[num];
+        
+        if(0 <= ny && ny <= 10 && 0 <= nx && nx <= 10){
+            if(!visited[y][x][ny][nx]){
+                answer++;
+                visited[y][x][ny][nx] = true;
+                visited[ny][nx][y][x] = true;
+            }
+            y = ny;
+            x = nx;
+        }
+    }
+    return answer;
+}
