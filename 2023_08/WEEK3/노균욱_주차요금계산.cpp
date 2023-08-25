@@ -14,7 +14,6 @@
 #include <vector>
 #include <map>
 #include <sstream>
-#include <iostream>
 
 using namespace std;
 
@@ -86,6 +85,5 @@ int calc_cost(vector<int> fees,int time){
     int unitFee = 0;
     time -= fees[0];
     unitFee = ((time/fees[2]) + (time % fees[2] > 0 ? 1 : 0)) * fees[3]; //올림을 해줘야함 
-    cout <<unitFee<<"    ";
     return fees[1] + unitFee;
 }
