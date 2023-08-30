@@ -15,7 +15,7 @@ int max_check(vector<int>& v, int idx){
 int solution(vector<vector<int> > land)
 {
     int answer = 0;
-    for(size_t i = 0; i < land.size(); i++){
+    for(size_t i = 1; i < land.size(); i++){
         for(int j = 0; j < 4; j++){
             land[i][j] += max_check(land[i], j);
             answer = max(answer, land[i][j]);
