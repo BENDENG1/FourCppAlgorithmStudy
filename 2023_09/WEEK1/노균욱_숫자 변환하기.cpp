@@ -47,15 +47,20 @@ int solution(int x, int y, int n) {
 /*
 음 그냥 세가지 경우에 대해서 횟수를 집어넣고 
 */
+/*
+음 그냥 세가지 경우에 대해서 횟수를 집어넣고 
+*/
 #include <string>
 #include <vector>
 #include <queue>
+#include <map>
 
 using namespace std;
 
 int solution(int x, int y, int n) {
     int answer = -1;
     queue<pair<int,int>> q;
+    map <int,bool> visited; 
     
     q.push({x,0});
     while(!q.empty()){
@@ -64,12 +69,22 @@ int solution(int x, int y, int n) {
         q.pop();
         
         if(num == y){
-            answer = cnt;
-            break;
+            return cnt;
+        }else if(num > y)
+            continue;
+        
+        if(num * 2 <= y && visited[num *2] == false){
+            q.push({num*2,cnt+1});
+            visited[num *2] = true;
         }
-        if(num * 2 <= y)q.push({num*2,cnt+1});
-        if(num * 3 <= y)q.push({num*3,cnt+1});
-        if(num + n <= y)q.push({num +n, cnt+1});
+        if(num * 3 <= y && visited[num *3] == false){
+            q.push({num*3,cnt+1});
+            visited[num *3] =true;
+        }
+        if(num + n <= y && visited[num + n] == false){
+            q.push({num +n, cnt+1});
+            visited[num + n] = true;
+        }
     }
-    return answer;
+    return -1;
 }
