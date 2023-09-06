@@ -4,6 +4,8 @@
         "iostream": "cpp",
         "deque": "cpp",
         "xstring": "cpp",
-        "map": "cpp"
-    }
+        "map": "cpp",
+        "utility": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }
