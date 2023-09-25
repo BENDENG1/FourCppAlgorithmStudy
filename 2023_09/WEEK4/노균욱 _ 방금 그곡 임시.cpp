@@ -1,3 +1,75 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <sstream>
+#include <map>
+
+using namespace std;
+
+int getMinutes(string start, string end);
+
+
+string solution(string m, vector<string> musicinfos) {
+    string answer = "";
+    string startTime = "";
+    string endTime = "";
+    string songName = "";
+    string songDetail = "";
+    int maxTime = 0;
+    int time = 0;
+    
+    for(int i = 0 ; i < m.length();i++){
+        if(i + 1 < m.length() && m[i+1] == '#'){
+            m[i] = tolower(m[i]);
+            m.erase(i+1,1);
+        }
+    }
+    
+    for(int i = 0 ; i < musicinfos.size();i++){
+        istringstream iss(musicinfos[i]);
+        char del = ',';
+        
+        getline(iss,startTime,del);
+        getline(iss,endTime,del);
+        getline(iss,songName,del);
+        getline(iss,songDetail);
+        string detail = "";
+        
+        for(int j = 0 ; j < songDetail.length();j++){
+            if(j + 1 < songDetail.length() && songDetail[j+1] == '#'){
+                songDetail[j] = tolower(songDetail[j]);
+                songDetail.erase(j+1,1);
+            }
+        }
+        time = getMinutes(startTime,endTime);
+        for(int j = 0 ; j < time;j++){
+            detail += songDetail[j % songDetail.length()];
+        }
+        //캬 이거 그냥 detail.find(m) && maxTime < time 이렇게만 적어서 안된거였누..
+        if(detail.find(m) != std::string::npos && maxTime < time){
+            maxTime = time;
+            answer = songName;
+        }
+    }
+    
+    if(answer == ""){
+        return "(None)";
+    }
+    return answer;
+}
+
+int getMinutes(string start, string end){
+    int startHour = stoi(start.substr(0,2));
+    int startMinute = stoi(start.substr(3,2));
+    int endHour = stoi(end.substr(0,2));
+    int endMinute = stoi(end.substr(3,2));
+    return (endHour - startHour) * 60 + endMinute - startMinute;
+}
+
+
+
+
+/////// 아래는 이상한 풀이.. 그래도 잊지말자고 push합니다.
 /*
 음은 12개 
 
