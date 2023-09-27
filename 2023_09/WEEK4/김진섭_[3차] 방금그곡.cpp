@@ -1,4 +1,4 @@
-//¹®Á¦Ç®ÀÌ: https://githubseob.tistory.com/349
+//ï¿½ï¿½ï¿½ï¿½Ç®ï¿½ï¿½: https://githubseob.tistory.com/349
 
 #include <string>
 #include <vector>
@@ -72,6 +72,10 @@ string solution(string m, vector<string> musicinfos) {
 
         while (sheet.size() < music_time) {
             sheet += sheet;
+        }
+        
+        if (music_time < sheet.size()) {
+            sheet.erase(music_time);
         }
 
         if (sheet.find(m) != -1) return name;
