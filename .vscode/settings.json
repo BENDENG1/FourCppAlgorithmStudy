@@ -1,8 +1,11 @@
 {
     "files.associations": {
+
+=======
         "stack": "cpp",
         "vector": "cpp",
         "xstring": "cpp",
+
         "algorithm": "cpp"
     }
 }
