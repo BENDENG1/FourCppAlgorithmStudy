@@ -14,17 +14,26 @@ using namespace std;
 int arr[100001] = {0,};
 
 int main(){
-    int n, tmp, budget, sum = 0;
+    int n, tmp, budget, sum = 0,bMax = 0;
+    int cnt = 0;
 
     cin >> n;
 
     for(int i = 0; i < n; i++){
         cin >> tmp;
+        bMax = bMax > tmp ? bMax : tmp;
         sum += tmp;
         arr[tmp]++;
     }
 
     cin >> budget;
 
+    while(budget < sum){
+        cnt += arr[bMax];
+        sum -= cnt;
+        bMax--;
+    }
 
+    cout<<bMax;
+    return 0;
 }
