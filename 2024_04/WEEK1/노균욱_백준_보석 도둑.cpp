@@ -42,7 +42,7 @@ int main(){
 
     for(int i = 0 ; i < n; i++){
         cin >> weight >> price;
-        v.push_back({weight,price});
+        v.push_back({weight,price});    
     }
 
     for(int i = 0; i < k; i++){
