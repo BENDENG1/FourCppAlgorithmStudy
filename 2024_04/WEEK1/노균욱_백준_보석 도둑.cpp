@@ -32,8 +32,9 @@ bool cmp(const jewel &a, const jewel & b){
 int main(){
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 
-    int n, k, sum = 0;
+    int n, k;
     int weight, price;
+    long long sum = 0;
 
     vector<int> backpack;
     vector<jewel> v;
