@@ -32,6 +32,8 @@ pair<int, int> interval_min_max(int node, int start, int end, int left, int righ
 }
 
 int main() {
+    ios::sync_with_stdio(false);  // 입출력 속도 향상
+    cin.tie(nullptr);             // 입출력 속도 향상
     int N, M;
     cin >> N >> M;
 
@@ -47,7 +49,7 @@ int main() {
         int a, b;
         cin >> a >> b;
         pair<int, int> result = interval_min_max(1, 1, N, a, b);
-        cout << result.first << " " << result.second << endl;
+        cout << result.first << " " << result.second <<  "\n";
     }
 
     return 0;
