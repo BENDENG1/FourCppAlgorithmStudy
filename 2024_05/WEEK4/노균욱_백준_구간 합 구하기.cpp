@@ -13,36 +13,69 @@ https://www.acmicpc.net/blog/view/9
 */
 #include <iostream>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 vector<long long> v;
+vector<long long> tree;
 
+long long init(int node, int start, int end){
+    if(start == end){
+        tree[node] = v[start];
+    }else{
+        tree[node] = init(node * 2 , start, (start + end) / 2) + init(node * 2 + 1, (start + end) / 2 + 1, end);
+    }
+    return tree[node];
+}
+
+void update(int node, int start, int end, int idx, long long diff){
+    if (idx < start || idx > end)
+        return;
+    tree[node] = tree[node] + diff;
+    if(start != end){
+        update(node * 2 , start, (start + end) / 2,idx, diff);
+        update(node * 2 + 1 , (start + end) / 2 + 1, end, idx, diff);
+    }
+}
+
+long long sum(int node, int start, int end, int left, int right){
+    if(left > end || right < start)
+        return 0;
+    if(left <= start && end <= right){
+        return tree[node];
+    }
+    return sum(node *2, start, (start + end) / 2, left, right) + sum(node *2 + 1, (start + end) / 2 + 1, end, left, right);
+}
 
 
 int main(){
-    ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+    ios_base::sync_with_stdio(0),cin.tie(NULL),cout.tie(NULL);
 
     int n, m, k;
     long long tmp;
     cin >> n >> m >> k;
-    v.push_back(0);
+    int h = (int)ceil(log2(n));
+    int tree_size = (1 << (h+1));
+    v.resize(n,0);
+    tree.resize(tree_size,0);
+    
     for(int i = 0 ; i < n; i++){
         cin >> tmp;
-        v.emplace_back(tmp + v[i - 1]);
+        v[i] = tmp;
     }
+    init(1, 0, n-1);
 
     for(int i = 0; i < m + k; i++){
         int a, b;
         long long c;
         cin >> a >> b >> c;
         if(a == 1){
+            b -= 1;
             long long diff = c - v[b];
-            for(int k = b; k <= n; k++){
-                v[k] += diff;
-            }
+            v[b] = c;
+            update(1, 0, n-1, b, diff);
         }else{
-            long long sum = v[c] - v[b - 1];
-            cout << sum << "\n";
+            cout << sum(1, 0, n-1, b-1, c - 1) <<"\n";
         }
     }
 }
