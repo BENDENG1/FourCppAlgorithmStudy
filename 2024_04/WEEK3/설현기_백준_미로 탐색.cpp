@@ -3,12 +3,6 @@
 
 using namespace std;
 
-int dx[4] = {-1, 1, 0, 0};
-int dy[4] = {0, 0, -1, 1};
-int maze[101][101];
-int visited[101][101];
-int dist[101][101];
-
 int main(){
     int n, m;
     int dx[4] = {-1, 1, 0, 0};
