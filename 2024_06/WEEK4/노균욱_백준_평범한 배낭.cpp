@@ -16,10 +16,9 @@ int main() {
 
 	int n, k;
 	int w[101], v[101];
-	
+
 	cin >> n >> k;
 	vector<vector<int>> dp(n + 1,vector<int>(k + 1,0));
-
 
 	for (int i = 1; i <= n; i++) {
 		cin >> w[i] >> v[i];
@@ -37,5 +36,4 @@ int main() {
 	}
 
 	cout << dp[n][k];
-
 }
