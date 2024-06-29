@@ -15,7 +15,7 @@ int main(){
     ios_base::sync_with_stdio(0), cin.tie(NULL), cout.tie(NULL);
 
     int t, n;
-    long long  dp[102] = {0,1,1,1,};
+    long long dp[102] = {0,1,1,1,};
 
     cin >> t;
 
