@@ -13,7 +13,6 @@ using namespace std;
 struct Snake{
     int y;
     int x;
-    int len;
 };
 
 struct Play{
@@ -41,7 +40,7 @@ int setDirection(int dir, char c){
 int main(){
     ios_base::sync_with_stdio(0), cin.tie(NULL), cout.tie(NULL); 
 
-    int n, k, x, y, l, time, ans = 0, dir = 0;
+    int n, k, x, y, l, time, ans = 1, dir = 0;
     char c;
     bool flag = false;
 
@@ -71,7 +70,7 @@ int main(){
         if(0 > ny || ny >= n  || 0 > nx || nx >= n){
             flag = true;
         }
-        for(int i = 1; i < snakeDeque.size();i++){
+        for(int i = 0; i < snakeDeque.size();i++){
             if(ny == snakeDeque[i].y && nx == snakeDeque[i].x){
                 flag = true;
             }
@@ -81,16 +80,18 @@ int main(){
         if(snakeDeque.size() > 1){
             if(v[ny][nx] == 0){
                 snakeDeque.pop_back();
+            }else{
+                v[ny][nx] = 0;
             }
             snakeDeque.push_front({ny, nx});
         }else{
             if(v[ny][nx] == 1){
-                snakeDeque.push_back({snakeDeque.back().y, snakeDeque.back().x});
+                v[ny][nx] = 0;
+            }else{
+                snakeDeque.pop_back();
             }
-            snakeDeque.front().y = ny;
-            snakeDeque.front().x = nx;
+            snakeDeque.push_front({ny,nx});
         }
-
 
         if(!playQ.empty() && playQ.front().time == ans){
             Play play = playQ.front();
