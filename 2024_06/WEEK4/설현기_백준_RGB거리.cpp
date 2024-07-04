@@ -21,7 +21,7 @@ int main(){
         dp[i][2] += min(dp[i - 1][0], dp[i - 1][1]);
     }
     
-    answer = min({dp[n-1][0],dp[n-1][1],dp[n-1][2]});
+    answer = min({dp[n-1][0], dp[n-1][1], dp[n-1][2]});
     cout << answer;
     
     return 0;
